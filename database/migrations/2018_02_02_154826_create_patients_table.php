@@ -15,6 +15,15 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('email',150)->nullable(false)->unique();
+            $table->string('fname', 20)->nullable(false);
+            $table->string('lname', 20)->nullable(false);
+            $table->string('gender', 10)->nullable(false);
+            $table->unsignedInteger('age')->nullable(false);
+            $table->string('phone', 11)->nullable(false);
+            $table->string('password')->nullable(false);
+            $table->string('img', 50)->nullable(false)->default("image/patient.jpg");
+            $table->rememberToken();
             $table->timestamps();
         });
     }

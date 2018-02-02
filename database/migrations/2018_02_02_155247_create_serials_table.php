@@ -15,7 +15,13 @@ class CreateSerialsTable extends Migration
     {
         Schema::create('serials', function (Blueprint $table) {
             $table->increments('id');
+            $table->time('serial_time');
+            $table->unsignedInteger('patient')->nullable(false);
+            $table->unsignedInteger('time')->nullable(false);
             $table->timestamps();
+            $table->unique(['time','serial_time']);
+            $table->foreign('time')->references('id')->on('times');
+            $table->foreign('patient')->references('id')->on('patients');
         });
     }
 

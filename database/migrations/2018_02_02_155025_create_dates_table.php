@@ -15,7 +15,11 @@ class CreateDatesTable extends Migration
     {
         Schema::create('dates', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('serial_date')->nullable(false);
+            $table->unsignedInteger('doctor')->nullable(false);
             $table->timestamps();
+            $table->unique(['serial_date','doctor']);
+            $table->foreign('doctor')->references('id')->on('doctors');
         });
     }
 
