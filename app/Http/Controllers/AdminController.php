@@ -9,7 +9,43 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Http\Request;
+use App\district;
+use App\category;
+
 class AdminController extends Controller
 {
+    public function AdminAdd()
+    {
+        $dbVar1= category::all();
+        $dbVar2= district::all();
+        return view('Admin.AdminAdd')->with('Categories',$dbVar1)->with('Districts',$dbVar2);
+    }
 
+    public function NewDistrict(Request $request)
+    {
+        $this->validate( $request,[
+            'district' => 'required|string|max:145|unique:districts',
+        ]);
+
+        $dbVar = new district();
+        $dbVar->district = $request->district;
+        $dbVar->save();
+
+        return redirect(route('AdminAdd'));
+    }
+
+    public function NewCategory(Request $request)
+    {
+        $this->validate( $request,[
+            'category' => 'required|string|max:145|unique:categories',
+        ]);
+
+        $dbVar = new category();
+        $dbVar->category = $request->category;
+        $dbVar->save();
+
+        return redirect(route('AdminAdd'));
+
+    }
 }

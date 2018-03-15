@@ -26,6 +26,10 @@ Route::post('EditPatient','PatientController@EditPatientSubmit')->name('PatientE
 Route::post('EditPatientPic','PatientController@EditPatientPicSubmit')->name('PatientEditPic.Submit');
 Route::post('EditPatientPass','PatientController@EditPatientPassSubmit')->name('PatientEditPass.Submit');
 
+Route::get('AdminAdd','AdminController@AdminAdd')->name('AdminAdd');
+Route::post('NewCategory','AdminController@NewCategory')->name('NewCategory.Submit');
+Route::post('NewDistrict','AdminController@NewDistrict')->name('NewDistrict.Submit');
+
 Route::get('/', function () {
     return view('welcome');
 });
