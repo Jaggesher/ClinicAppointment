@@ -1,0 +1,26 @@
+.add_doc_head{
+    margin-bottom: 20px;
+    padding-left: 5px;
+    width: 100%;
+    border-bottom-style: solid;
+    text-align: left;
+    border-color: #357ed3;
+}
+.add_doc_head h2{
+    font-family: Georgia, Serif;
+    /*font-family: ‘Times New Roman’, Times, serif;*/
+    font-size: 30px;
+}
+
+textarea {
+    resize: none;
+}
+
+/*Media query Section.*/
+
+@media (max-width: 768px) {
+    .add_doc_head h2{
+        font-size: 18px;
+    }
+
+}

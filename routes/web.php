@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('NewDoc','DoctorController@AddDoc')->name('DocAdd');
+Route::post('NewDoc','DoctorController@AddDocSubmit')->name('DocAdd.Submit');
+
 Route::get('/', function () {
     return view('welcome');
 });
+
