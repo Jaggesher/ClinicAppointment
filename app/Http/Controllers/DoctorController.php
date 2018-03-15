@@ -28,4 +28,14 @@ class DoctorController extends Controller
     {
         return $request->all();
     }
+
+    public function EditDoc($id)
+    {
+        return View('Doctor.EditDoctor');
+    }
+
+    public function EditDocSubmit(Request $request)
+    {
+        return $request->all();
+    }
 }

@@ -13,6 +13,10 @@
 
 Route::get('NewDoc','DoctorController@AddDoc')->name('DocAdd');
 Route::post('NewDoc','DoctorController@AddDocSubmit')->name('DocAdd.Submit');
+Route::get('EditDoc/{id}','DoctorController@EditDoc')->where('id' , '[0-9]+')->name('DocEdit');
+Route::post('EditDoc','DoctorController@EditDocSubmit')->name('DocEdit.Submit');
+Route::post('EditDocPic','DoctorController@EditDocSubmit')->name('DocEditPic.Submit');
+Route::post('EditDocPass','DoctorController@EditDocSubmit')->name('DocEditPass.Submit');
 
 Route::get('/', function () {
     return view('welcome');
