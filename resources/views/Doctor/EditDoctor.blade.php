@@ -21,7 +21,7 @@
 
         <div class="col-sm-4 pro_image" align="center">
             <h4>Current Profile Picture.</h4>
-            <img  id="ProPicUp" src="{{ asset('Image/RakulPreet.jpg') }}" class="img-thumbnail clearfix" alt="Profile Pic" width="200" height="200">
+            <img  id="ProPicUp" src="{{ asset($Personal->img) }}" class="img-thumbnail clearfix" alt="Profile Pic" width="200" height="200">
             <form action="{{route('DocEditPic.Submit')}}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="form-group">
@@ -80,7 +80,7 @@
                         <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="col-lg-3 control-label">Name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" name="name" placeholder="Doctor's Name"  value="{{ old('name') }}" maxlength="49" required autofocus >
+                                <input class="form-control" type="text" name="name" placeholder="Doctor's Name"  value="{{ $Personal->name }}" maxlength="49" required autofocus >
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -93,7 +93,7 @@
                         <div class="form-group {{ $errors->has('sort_msg') ? ' has-error' : '' }}">
                             <label class="col-lg-3 control-label">Short Message:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" name="sort_msg" placeholder="Sort Message" value="{{ old('sort_msg') }}" maxlength="149" required >
+                                <input class="form-control" type="text" name="sort_msg" placeholder="Sort Message" value="{{ $Personal->sort_msg }}" maxlength="149" required >
                                 @if ($errors->has('sort_msg'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('sort_msg') }}</strong>
@@ -105,12 +105,10 @@
                         <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
                             <label class="col-lg-3 control-label">Category:</label>
                             <div class="col-lg-8">
-                                <select class="form-control" name="category">
-
-                                    <option >category</option>
-                                    {{--@foreach($Categories as $category)--}}
-                                    {{--<option value="{{$category->category}}">{{$category->category}}</option>--}}
-                                    {{--@endforeach--}}
+                                <select class="form-control selectpicker" name="category" title="Choose one of the following..." required>
+                                    @foreach($Categories as $category)
+                                        <option value="{{$category->Category}}" @if( $Personal->category==$category->Category) selected @endif>{{$category->Category}}</option>
+                                    @endforeach
 
                                 </select>
                                 @if ($errors->has('category'))
@@ -124,15 +122,14 @@
                         <div class="form-group {{ $errors->has('district') ? ' has-error' : '' }}">
                             <label class="col-lg-3 control-label">District:</label>
                             <div class="col-lg-8">
-                                <select class="form-control" name="district">
-                                    <option>Rajshahi</option>
-                                    {{--@foreach($Categories as $category)--}}
-                                    {{--<option value="{{$category->category}}">{{$category->category}}</option>--}}
-                                    {{--@endforeach--}}
+                                <select class="form-control selectpicker" name="district" title="Choose one of the following..." required>
+                                    @foreach($Districts as $district)
+                                        <option value="{{$district->district}}" @if( $Personal->district==$district->district) selected @endif >{{$district->district}}</option>
+                                    @endforeach
                                 </select>
-                                @if ($errors->has('category'))
+                                @if ($errors->has('district'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('category') }}</strong>
+                                        <strong>{{ $errors->first('district') }}</strong>
                                 </span>
                                 @endif
                             </div>
@@ -141,7 +138,7 @@
                         <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
                             <label class="col-lg-3 control-label">description:</label>
                             <div class="col-lg-8">
-                                <textarea class="form-control" rows="8" placeholder="About Doctor." name="description" required>{{ old('description') }}</textarea>
+                                <textarea class="form-control" rows="8" placeholder="About Doctor." name="description" required>{{ $Personal->description }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -154,7 +151,7 @@
                             <label for="email" class="col-md-3 control-label">E-Mail Address</label>
 
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter Your Email" readonly>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $Personal->email }}" placeholder="Enter Your Email" readonly>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>

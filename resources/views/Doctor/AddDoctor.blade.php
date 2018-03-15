@@ -75,9 +75,9 @@
                                 <option value="{{$district->district}}">{{$district->district}}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('category'))
+                            @if ($errors->has('district'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('category') }}</strong>
+                                        <strong>{{ $errors->first('district') }}</strong>
                                 </span>
                             @endif
                         </div>
