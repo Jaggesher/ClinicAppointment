@@ -10,7 +10,9 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+use App\category;
+use App\district;
+use App\doctor;
 
 class DoctorController extends Controller
 {
@@ -21,11 +23,34 @@ class DoctorController extends Controller
 
     public function AddDoc()
     {
-        return View('Doctor.AddDoctor');
+        $dbVar1 = category::all();
+        $dbVar2 = district::all();
+        return View('Doctor.AddDoctor')->with('Categories',$dbVar1)->with('Districts',$dbVar2);;
     }
 
     public function AddDocSubmit(Request $request)
     {
+        $this->validate( $request,[
+            'name' => 'required|string|max:45',
+            'sort_msg' => 'required|string|max:145',
+            'email' => 'required|string|email|max:255|unique:doctors',
+            'category' => 'required|string',
+            'district' => 'required|string',
+            'description' => 'required|string',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $dbVar = new doctor();
+
+        $dbVar->name = $request->name;
+        $dbVar->sort_msg = $request->sort_msg;
+        $dbVar->email = $request->email;
+        $dbVar->category = $request->category;
+        $dbVar->district = $request->district;
+        $dbVar->description = $request->description;
+        $dbVar->password = bcrypt($request->password);
+        $dbVar->save();
+
         return $request->all();
     }
 

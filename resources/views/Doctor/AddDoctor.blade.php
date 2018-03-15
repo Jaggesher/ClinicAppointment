@@ -53,12 +53,10 @@
                     <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
                         <label class="col-lg-3 control-label">Category:</label>
                         <div class="col-lg-8">
-                            <select class="form-control" name="category">
-
-                                <option >category</option>
-                                {{--@foreach($Categories as $category)--}}
-                                    {{--<option value="{{$category->category}}">{{$category->category}}</option>--}}
-                                {{--@endforeach--}}
+                            <select class="form-control selectpicker" name="category" title="Choose one of the following..." required>
+                                @foreach($Categories as $category)
+                                    <option value="{{$category->Category}}">{{$category->Category}}</option>
+                                @endforeach
 
                             </select>
                             @if ($errors->has('category'))
@@ -72,11 +70,10 @@
                     <div class="form-group {{ $errors->has('district') ? ' has-error' : '' }}">
                         <label class="col-lg-3 control-label">District:</label>
                         <div class="col-lg-8">
-                            <select class="form-control" name="district">
-                                <option>Rajshahi</option>
-                                {{--@foreach($Categories as $category)--}}
-                                {{--<option value="{{$category->category}}">{{$category->category}}</option>--}}
-                                {{--@endforeach--}}
+                            <select class="form-control selectpicker" name="district" title="Choose one of the following..." required>
+                                @foreach($Districts as $district)
+                                <option value="{{$district->district}}">{{$district->district}}</option>
+                                @endforeach
                             </select>
                             @if ($errors->has('category'))
                                 <span class="help-block">
