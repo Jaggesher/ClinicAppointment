@@ -20,10 +20,10 @@ Route::post('EditDocPass','DoctorController@EditDocSubmit')->name('DocEditPass.S
 
 Route::get('NewPatient','PatientController@AddPatient')->name('PatientAdd');
 Route::post('NewPatient','PatientController@AddPatientSubmit')->name('PatientAdd.Submit');
-Route::get('EditPatient/{id}','PatientController@EditPatient')->where('id' , '[0-9]+')->name('PatientEdit');
+Route::get('EditPatient','PatientController@EditPatient')->where('id' , '[0-9]+')->name('PatientEdit');
 Route::post('EditPatient','PatientController@EditPatientSubmit')->name('PatientEdit.Submit');
-Route::post('EditPatientPic','PatientController@EditPatientSubmit')->name('PatientEditPic.Submit');
-Route::post('EditPatientPass','PatientController@EditPatientSubmit')->name('PatientEditPass.Submit');
+Route::post('EditPatientPic','PatientController@EditPatientPicSubmit')->name('PatientEditPic.Submit');
+Route::post('EditPatientPass','PatientController@EditPatientPassSubmit')->name('PatientEditPass.Submit');
 
 Route::get('/', function () {
     return view('welcome');

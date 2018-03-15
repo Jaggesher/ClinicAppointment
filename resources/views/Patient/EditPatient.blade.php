@@ -21,7 +21,7 @@
 
         <div class="col-sm-4 pro_image" align="center">
             <h4>Current Profile Picture.</h4>
-            <img  id="ProPicUp" src="{{ asset('Image/RakulPreet.jpg') }}" class="img-thumbnail clearfix" alt="Profile Pic" width="200" height="200">
+            <img  id="ProPicUp" src="{{ asset($Personal->img) }}" class="img-thumbnail clearfix" alt="Profile Pic" width="200" height="200">
             <form action="{{route('PatientEditPic.Submit')}}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="form-group">
@@ -81,7 +81,7 @@
                             <label for="fname" class="col-md-3 control-label"> First Name</label>
 
                             <div class="col-md-8">
-                                <input id="fname" type="text" class="form-control" name="fname" value="{{ old('fname') }}" required autofocus>
+                                <input id="fname" type="text" class="form-control" name="fname" value="{{ $Personal->fname }}" required autofocus>
 
                                 @if ($errors->has('fname'))
                                     <span class="help-block">
@@ -95,7 +95,7 @@
                             <label for="lname" class="col-md-3 control-label">Last Name</label>
 
                             <div class="col-md-8">
-                                <input id="lname" type="text" class="form-control" name="lname" value="{{ old('lname')}}" required >
+                                <input id="lname" type="text" class="form-control" name="lname" value="{{ $Personal->lname}}" required >
 
                                 @if ($errors->has('lname'))
                                     <span class="help-block">
@@ -109,7 +109,7 @@
                             <label for="email" class="col-md-3 control-label">E-Mail Address</label>
 
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" readonly>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $Personal->email }}" readonly>
 
                                 {{-- @if ($errors->has('email'))
                                     <span class="help-block">
@@ -125,10 +125,9 @@
 
                             <div class="col-md-8">
                                 <select class="form-control" id="gender" name="gender">
-                                    <option value="Male">Male</option>
-                                    {{--<option value="Male" @if( $Personal->gender=="Male") selected @endif>Male</option>--}}
-                                    {{--<option value="Female"  @if( $Personal->gender=="Female") selected @endif >Female</option>--}}
-                                    {{--<option value="Other"  @if( $Personal->gender=="Other") selected @endif >Other</option>--}}
+                                    <option value="Male" @if( $Personal->gender=="Male") selected @endif>Male</option>
+                                    <option value="Female"  @if( $Personal->gender=="Female") selected @endif >Female</option>
+                                    <option value="Other"  @if( $Personal->gender=="Other") selected @endif >Other</option>
                                 </select>
                             </div>
 
@@ -144,7 +143,7 @@
                             <label for="phone" class="col-md-3 control-label">Mobile</label>
 
                             <div class="col-md-8">
-                                <input id="phone" type="text" class="form-control" name="phone" value="{{  old('phone') }}" required >
+                                <input id="phone" type="text" class="form-control" name="phone" value="{{  $Personal->phone }}" required >
 
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
@@ -158,7 +157,7 @@
                             <label for="age" class="col-md-3 control-label">Age</label>
 
                             <div class="col-md-8">
-                                <input id="age" type="number" min="0" max="200" class="form-control" name="age" value="{{  old('age') }}" required >
+                                <input id="age" type="number" min="0" max="200" class="form-control" name="age" value="{{  $Personal->age }}" required >
 
                                 @if ($errors->has('age'))
                                     <span class="help-block">
