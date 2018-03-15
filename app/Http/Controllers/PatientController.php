@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\patient;
 use Hash;
@@ -18,7 +19,8 @@ class PatientController extends Controller
 
     public function ViewPatient($id)
     {
-
+        $dbVar=patient::find($id);
+        return View('Patient.ViewPatient')->with('Personal',$dbVar);
     }
 
     public function AddPatient()
