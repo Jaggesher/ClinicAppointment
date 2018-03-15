@@ -18,6 +18,13 @@ Route::post('EditDoc','DoctorController@EditDocSubmit')->name('DocEdit.Submit');
 Route::post('EditDocPic','DoctorController@EditDocSubmit')->name('DocEditPic.Submit');
 Route::post('EditDocPass','DoctorController@EditDocSubmit')->name('DocEditPass.Submit');
 
+Route::get('NewPatient','PatientController@AddPatient')->name('PatientAdd');
+Route::post('NewPatient','PatientController@AddPatientSubmit')->name('PatientAdd.Submit');
+Route::get('EditPatient/{id}','PatientController@EditPatient')->where('id' , '[0-9]+')->name('PatientEdit');
+Route::post('EditPatient','PatientController@EditPatientSubmit')->name('PatientEdit.Submit');
+Route::post('EditPatientPic','PatientController@EditPatientSubmit')->name('PatientEditPic.Submit');
+Route::post('EditPatientPass','PatientController@EditPatientSubmit')->name('PatientEditPass.Submit');
+
 Route::get('/', function () {
     return view('welcome');
 });
