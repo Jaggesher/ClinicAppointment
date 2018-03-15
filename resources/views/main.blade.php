@@ -13,6 +13,14 @@
         top: 0;
         min-height: 100vh;
       }
+      footer{
+          text-align: center;
+          background-color: #2f2f2f;
+          color: white;
+          font-size: 15px;
+          height: 45px;
+          padding-top: 15px;
+      }
     </style>
   </head>
 
@@ -23,11 +31,9 @@
       <div id="ContentOfBody" class="container-fluid">
          @yield('ContentOfBody')
       </div>
-     <footer class="page-footer font-small blue pt-4 mt-4">
-         <div class="footer-copyright py-3 text-center">
-             © 2018 Copyright:
-             <a href="#"> Saddam Hossain, </a>
-         </div>
+
+     <footer>
+         <p>© 2018 Copyright:<a href="https://github.com/LazySaddam"> Saddam Hossain, </a></p>
      </footer>
   </body>
  
