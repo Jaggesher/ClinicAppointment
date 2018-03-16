@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\category;
 use App\district;
 use App\doctor;
+use Hash;
 
 class DoctorController extends Controller
 {
@@ -65,45 +66,48 @@ class DoctorController extends Controller
 
     public function EditDocSubmit(Request $request)
     {
-        $this->validate($request,[
-            'fname' => 'required|string|max:20',
-            'lname' => 'required|string|max:20',
-            'gender' => 'required|string',
-            'phone' => 'required|numeric',
-            'age' => 'required|integer',
-        ]);
 
         $id=1;
-        $dbVar=patient::find($id);
-        $dbVar->fname=$request['fname'];
-        $dbVar->lname=$request['lname'];
-        $dbVar->gender=$request['gender'];
-        $dbVar->phone=$request['phone'];
-        $dbVar->age=$request['age'];
 
+        $this->validate($request,[
+            'name' => 'required|string|max:45',
+            'sort_msg' => 'required|string|max:145',
+//            'email' => 'required|string|email|max:255|unique:doctors',
+            'category' => 'required|string',
+            'district' => 'required|string',
+            'description' => 'required|string',
+        ]);
+
+        $dbVar = doctor::find($id);
+        $dbVar->name = $request->name;
+        $dbVar->sort_msg = $request->sort_msg;
+        $dbVar->category = $request->category;
+        $dbVar->district = $request->district;
+        $dbVar->description = $request->description;
         $dbVar->save();
 
-        return redirect()->route('PatientEdit');
+        return redirect()->route('DocEdit');
 
-        return $request->all();
     }
 
-    public function EditPatientPicSubmit(Request $request)
+    public function EditDocPicSubmit(Request $request)
     {
+        $id=1;
+
         $this->validate($request,[
             'fileToUpload' => 'required|image|mimes:jpeg,jpg,png|max:2500',
         ]);
 
         $file = $request->file('fileToUpload');
-        $id=1;
-        $dbVar=patient::find($id);
+
+        $dbVar=doctor::find($id);
         $destinationPath="profilePicture";
-        $fileName=$id.'P.'.$file->getClientOriginalExtension();
+        $fileName=$id.'D.'.$file->getClientOriginalExtension();
         $uploadSuccess = $file->move($destinationPath, $fileName);
         if($uploadSuccess){
             $dbVar->img=$destinationPath.'/'.$fileName;
             $dbVar->save();
-            return redirect()->route('PatientEdit');
+            return redirect()->route('DocEdit');
         }
         //Here just send a flush message for for someting wrong for storing picture
         $request->session()->flash('wrong', 'Something Went Wrong. Please Try Latter');
@@ -114,7 +118,7 @@ class DoctorController extends Controller
     public function EditPatientPassSubmit(Request $request)
     {
         $id=1;
-        $dbVar=patient::find($id);
+        $dbVar=doctor::find($id);
         $hashedPassword=$dbVar->password;
 
         $this->validate($request,[
