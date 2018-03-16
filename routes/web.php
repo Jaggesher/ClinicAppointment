@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('error','CommonController@Error')->name('error');
+
+
+Route::get('ViewDoc/{id}','DoctorController@ViewDoc')->where('id' , '[0-9]+')->name('ViewDoc');
 Route::get('NewDoc','DoctorController@AddDoc')->name('DocAdd');
 Route::post('NewDoc','DoctorController@AddDocSubmit')->name('DocAdd.Submit');
 Route::get('EditDoc','DoctorController@EditDoc')->name('DocEdit');

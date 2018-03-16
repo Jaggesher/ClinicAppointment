@@ -9,7 +9,12 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Contracts\View\View;
+
 class CommonController extends Controller
 {
-
+    public function Error()
+    {
+        return View('error');
+    }
 }

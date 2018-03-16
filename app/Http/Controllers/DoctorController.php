@@ -17,9 +17,14 @@ use Hash;
 
 class DoctorController extends Controller
 {
-    public function ViewDoctor($id)
+    public function ViewDoc($id)
     {
-
+        $dbVar = doctor::find($id);
+        if($dbVar != null)
+        {
+            return view('Doctor.viewDoctor')->with('Personal',$dbVar);
+        }
+        return redirect('error');
     }
 
     public function AddDoc()

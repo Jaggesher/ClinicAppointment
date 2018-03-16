@@ -1,0 +1,147 @@
+.add_doc_head{
+	margin-bottom: 20px;
+	padding-left: 5px;
+	width: 100%;
+	border-bottom-style: solid; 
+	text-align: left;
+	border-color: #357ed3;
+}
+.add_doc_head h2{
+	font-family: Georgia, Serif;
+	/*font-family: ‘Times New Roman’, Times, serif;*/ 
+	font-size: 30px;
+	color:#00838f;
+}
+
+
+.pro-info{
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: left;
+	border-radius: 5px;
+	background-color: rgb(242, 242, 242);
+	
+	/*height: 305px;*/
+	/*max-width: 450px;*/
+	-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+    box-shadow: 0 6px 6px -6px #0E1119; 
+}
+.pro-info h1{
+	font-size: 20px;
+}
+
+.cls_sort_msg{
+
+	/*font-family: Georgia, Serif;*/
+	font-family: ‘Times New Roman’, Times, serif;
+	padding-top: 3px;
+	font-size: 16px;
+}
+.info_table{
+	border-top: none;
+	text-align: left;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    display: table;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.info_table td,
+.info_table th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+.info_table tbody tr {
+    border-bottom: 1px solid black;
+}
+
+.info_table td:first-child {color:#357ed3; max-width: 60px; text-align: left;}
+
+.doc-description{
+	text-align: justify;
+	text-justify: inter-word;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #4da8b1;
+}
+
+.doc-desc-cls{
+	padding: 0px 5px 5px 5px;
+	border-top: 1px solid gray;
+}
+.doc-desc-cls h1{
+	color:#357ed3; 
+}
+
+
+/*Here Contest Log Style Start*/
+.contest_table{
+	margin-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: left;
+	border-radius: 5px;
+	background-color: #185875;
+	/*background-color: rgb(242, 242, 242);*/
+	/*max-width: 450px;*/
+	-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+    box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+
+.contest_info_table{
+	border-top: none;
+	text-align: left;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    display: table;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+}
+.contest_info_table td,
+.contest_info_table th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 2%;
+}
+.contest_info_table thead{
+    border-bottom: 3px solid green;
+    color: #FB667A;
+}
+.contest_info_table tbody tr {
+    border-bottom: 2px solid black;
+    color: white;
+}
+.contest_info_table tbody tr td a {
+    color: white;
+}
+
+
+
+
+/*Media query Section.*/
+
+@media (max-width: 768px) {
+    .add_doc_head h2{
+		font-size: 18px;
+	}
+	.contest_info_table{
+		font-size: 12px;
+	}
+
+	.info_table{
+    	font-size: 16px;
+    }
+    .doc-description{
+    	font-size: 14px;
+    }
+}
