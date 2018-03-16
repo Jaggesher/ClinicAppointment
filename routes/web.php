@@ -13,7 +13,8 @@
 
 Route::get('error','CommonController@Error')->name('error');
 
-
+Route::get('DocLogin','DoctorController@Login')->name('DocLogin');
+Route::post('DocLogin','DoctorController@LoginSubmit')->name('DocLogin.Submit');
 Route::get('ViewDoc/{id}','DoctorController@ViewDoc')->where('id' , '[0-9]+')->name('ViewDoc');
 Route::get('NewDoc','DoctorController@AddDoc')->name('DocAdd');
 Route::post('NewDoc','DoctorController@AddDocSubmit')->name('DocAdd.Submit');
@@ -22,6 +23,8 @@ Route::post('EditDoc','DoctorController@EditDocSubmit')->name('DocEdit.Submit');
 Route::post('EditDocPic','DoctorController@EditDocPicSubmit')->name('DocEditPic.Submit');
 Route::post('EditDocPass','DoctorController@EditPatientPassSubmit')->name('DocEditPass.Submit');
 
+Route::get('PatientLogin','PatientController@Login')->name('PatientLogin');
+Route::post('PatientLogin','PatientController@LoginSubmit')->name('PatientLogin.Submit');
 Route::get('ViewPatient/{id}','PatientController@ViewPatient')->where('id' , '[0-9]+')->name('ViewPatient');
 Route::get('NewPatient','PatientController@AddPatient')->name('PatientAdd');
 Route::post('NewPatient','PatientController@AddPatientSubmit')->name('PatientAdd.Submit');

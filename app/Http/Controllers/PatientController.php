@@ -134,4 +134,16 @@ class PatientController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function Login()
+    {
+        return View('Patient.Login');
+    }
+
+    public function LoginSubmit(Request $request)
+    {
+        return $request->all();
+    }
+
 }

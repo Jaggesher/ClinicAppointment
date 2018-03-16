@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\category;
 use App\district;
@@ -141,5 +142,15 @@ class DoctorController extends Controller
         $request->session()->flash('no_match', 'Invalid Old Password');
 
         return redirect()->back();
+    }
+
+    public function Login()
+    {
+        return View('Doctor.Login');
+    }
+
+    public function LoginSubmit(Request $request)
+    {
+        return $request->all();
     }
 }

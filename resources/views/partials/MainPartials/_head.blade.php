@@ -12,9 +12,7 @@
 
 
 
-<link href="{{ asset('css/bootstrap-dropdownhover.min.css') }}" rel="stylesheet" >
-<link href="{{ asset('css/animate.min.css') }}" rel="stylesheet" >
-<link href="{{ asset('css/main.css') }}" rel="stylesheet" >
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
