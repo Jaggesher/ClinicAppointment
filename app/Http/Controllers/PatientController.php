@@ -20,7 +20,11 @@ class PatientController extends Controller
     public function ViewPatient($id)
     {
         $dbVar=patient::find($id);
-        return View('Patient.ViewPatient')->with('Personal',$dbVar);
+        if($dbVar != null) {
+            return View('Patient.ViewPatient')->with('Personal', $dbVar);
+        }
+        return redirect('error');
+
     }
 
     public function AddPatient()
@@ -57,12 +61,7 @@ class PatientController extends Controller
     {
         $id = 1;
         $dbVar=patient::find($id);
-        if($dbVar != null)
-        {
-            return view('Patient.EditPatient')->with('Personal',$dbVar);
-        }
-
-        return redirect('error');
+        return view('Patient.EditPatient')->with('Personal',$dbVar);
     }
 
     public function EditPatientSubmit(Request $request)
