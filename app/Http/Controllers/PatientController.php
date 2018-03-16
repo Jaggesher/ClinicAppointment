@@ -17,6 +17,12 @@ use Hash;
 class PatientController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth:patient');
+    }
+
+
     public function ViewPatient($id)
     {
         $dbVar=patient::find($id);
@@ -133,17 +139,6 @@ class PatientController extends Controller
         $request->session()->flash('no_match', 'Invalid Old Password');
 
         return redirect()->back();
-    }
-
-
-    public function Login()
-    {
-        return View('Patient.Login');
-    }
-
-    public function LoginSubmit(Request $request)
-    {
-        return $request->all();
     }
 
 }

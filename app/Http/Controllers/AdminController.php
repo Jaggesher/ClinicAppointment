@@ -15,6 +15,10 @@ use App\category;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function AdminAdd()
     {
         $dbVar1= category::all();

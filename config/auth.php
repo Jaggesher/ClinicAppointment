@@ -45,6 +45,17 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
+
+        'doctor' => [
+            'driver' => 'session',
+            'provider' => 'doctors',
+        ],
+
     ],
 
     /*
@@ -68,6 +79,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\patient::class,
+        ],
+
+        'doctors' => [
+            'driver' => 'eloquent',
+            'model' => App\doctor::class,
         ],
 
         // 'users' => [
@@ -97,6 +118,19 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+
+        'patients' => [
+            'provider' => 'patients',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'doctors' => [
+            'provider' => 'doctors',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
     ],
 
 ];

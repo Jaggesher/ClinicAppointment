@@ -18,6 +18,12 @@ use Hash;
 
 class DoctorController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:doctor');
+    }
+
     public function ViewDoc($id)
     {
         $dbVar = doctor::find($id);
@@ -144,13 +150,4 @@ class DoctorController extends Controller
         return redirect()->back();
     }
 
-    public function Login()
-    {
-        return View('Doctor.Login');
-    }
-
-    public function LoginSubmit(Request $request)
-    {
-        return $request->all();
-    }
 }
