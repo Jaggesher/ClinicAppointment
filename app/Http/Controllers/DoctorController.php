@@ -22,7 +22,7 @@ class DoctorController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:doctor');
+        $this->middleware('auth:doctor',['except' => 'ViewDoc']);
     }
 
     public function ViewDoc($id)
