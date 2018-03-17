@@ -31,9 +31,7 @@ class PatientLoginController extends Controller
             'email' => 'required|string|email|max:255',
             'password' =>  'required|min:6'
         ]);
-        Auth::guard('patient')->logout();
-        Auth::guard('doctor')->logout();
-        Auth::logout();
+        Auth::guard()->logout();
         if(Auth::guard('patient')->attempt(['email' => $request->email,'password' => $request->password],$request->remember)){
             return redirect('/');
         }
@@ -71,9 +69,7 @@ class PatientLoginController extends Controller
         $dbVar->password = bcrypt($request['password']);
         $dbVar->save();
 
-        Auth::guard('patient')->logout();
-        Auth::guard('doctor')->logout();
-        Auth::logout();
+        Auth::guard()->logout();
         if(Auth::guard('patient')->attempt(['email' => $request->email,'password' => $request->password])){
             return redirect('/');
         }
@@ -88,9 +84,7 @@ class PatientLoginController extends Controller
     {
         Auth::guard('patient')->logout();
 
-        $request->session()->flush();
-
-        $request->session()->regenerate();
+        $request->session()->invalidate();
 
         return redirect('/');
     }

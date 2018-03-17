@@ -18,7 +18,9 @@
         <div class=" col-sm-12 pro_head clearfix">
             <h2 class="pull-left"> <strong>{{ $Personal->fname}}'s</strong> Profile</h2>
             <h2 class="pull-right">
-                <a href="{{ route('PatientEdit')}}" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                @if(Auth::guard('patient')->check() && Auth::guard('patient')->user()->id == $Personal->id )
+                    <a href="{{ route('PatientEdit')}}" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                @endif
             </h2>
         </div>
         <div class="col-sm-2"></div>

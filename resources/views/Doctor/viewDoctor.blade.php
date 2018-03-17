@@ -17,9 +17,9 @@
         <div class=" col-sm-12 add_doc_head clearfix">
             <h2 class="pull-left">{{$Personal->name}}</h2>
             <h2 class="pull-right">
-                {{--@if(Auth::guard('admin')->check())--}}
+                @if(Auth::guard('doctor')->check() && Auth::guard('doctor')->user()->id == $Personal->id )
                     <a href="{{ route('DocEdit')}}" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-                {{--@endif--}}
+                @endif
             </h2>
         </div>
 
