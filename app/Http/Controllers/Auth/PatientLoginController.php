@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\patient;
 
 class PatientLoginController extends Controller
 {
@@ -30,8 +31,50 @@ class PatientLoginController extends Controller
             'email' => 'required|string|email|max:255',
             'password' =>  'required|min:6'
         ]);
-
+        Auth::guard('patient')->logout();
+        Auth::guard('doctor')->logout();
+        Auth::logout();
         if(Auth::guard('patient')->attempt(['email' => $request->email,'password' => $request->password],$request->remember)){
+            return redirect('/');
+        }
+
+        $request->session()->flash('email', 'These credentials do not match our records.');
+
+        return 'Ase nai';
+        //return redirect()->back();
+    }
+
+    public function AddPatient()
+    {
+        return View('Patient.AddPatient');
+    }
+
+    public function AddPatientSubmit(Request $request)
+    {
+        $this->validate( $request,[
+            'fname' => 'required|string|max:20',
+            'lname' => 'required|string|max:20',
+            'email' => 'required|string|email|max:255|unique:patients',
+            'gender' => 'required|string',
+            'phone' => 'required|numeric',
+            'age' => 'required|integer',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $dbVar=new patient();
+        $dbVar->email=$request['email'];
+        $dbVar->fname=$request['fname'];
+        $dbVar->lname=$request['lname'];
+        $dbVar->gender=$request['gender'];
+        $dbVar->phone=$request['phone'];
+        $dbVar->age=$request['age'];
+        $dbVar->password = bcrypt($request['password']);
+        $dbVar->save();
+
+        Auth::guard('patient')->logout();
+        Auth::guard('doctor')->logout();
+        Auth::logout();
+        if(Auth::guard('patient')->attempt(['email' => $request->email,'password' => $request->password])){
             return redirect('/');
         }
 

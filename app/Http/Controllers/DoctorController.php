@@ -15,6 +15,7 @@ use App\category;
 use App\district;
 use App\doctor;
 use Hash;
+use Auth;
 
 class DoctorController extends Controller
 {
@@ -34,42 +35,11 @@ class DoctorController extends Controller
         return redirect('error');
     }
 
-    public function AddDoc()
-    {
-        $dbVar1 = category::all();
-        $dbVar2 = district::all();
-        return View('Doctor.AddDoctor')->with('Categories',$dbVar1)->with('Districts',$dbVar2);
-    }
 
-    public function AddDocSubmit(Request $request)
-    {
-        $this->validate( $request,[
-            'name' => 'required|string|max:45',
-            'sort_msg' => 'required|string|max:145',
-            'email' => 'required|string|email|max:255|unique:doctors',
-            'category' => 'required|string',
-            'district' => 'required|string',
-            'description' => 'required|string',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        $dbVar = new doctor();
-
-        $dbVar->name = $request->name;
-        $dbVar->sort_msg = $request->sort_msg;
-        $dbVar->email = $request->email;
-        $dbVar->category = $request->category;
-        $dbVar->district = $request->district;
-        $dbVar->description = $request->description;
-        $dbVar->password = bcrypt($request->password);
-        $dbVar->save();
-
-        return $request->all();
-    }
 
     public function EditDoc()
     {
-        $id = 1;
+        $id = Auth::guard('doctor')->user()->id;
         $dbVar1 = category::all();
         $dbVar2 = district::all();
         $dbVar3 = doctor::find($id);
@@ -79,7 +49,7 @@ class DoctorController extends Controller
     public function EditDocSubmit(Request $request)
     {
 
-        $id=1;
+        $id=Auth::guard('doctor')->user()->id;
 
         $this->validate($request,[
             'name' => 'required|string|max:45',
@@ -98,13 +68,13 @@ class DoctorController extends Controller
         $dbVar->description = $request->description;
         $dbVar->save();
 
-        return redirect()->route('DocEdit');
+        return redirect()->route('ViewDoc',['id'=>$id]);
 
     }
 
     public function EditDocPicSubmit(Request $request)
     {
-        $id=1;
+        $id=Auth::guard('doctor')->user()->id;
 
         $this->validate($request,[
             'fileToUpload' => 'required|image|mimes:jpeg,jpg,png|max:2500',
@@ -119,7 +89,7 @@ class DoctorController extends Controller
         if($uploadSuccess){
             $dbVar->img=$destinationPath.'/'.$fileName;
             $dbVar->save();
-            return redirect()->route('DocEdit');
+            return redirect()->route('ViewDoc',['id'=>$id]);
         }
         //Here just send a flush message for for someting wrong for storing picture
         $request->session()->flash('wrong', 'Something Went Wrong. Please Try Latter');
@@ -129,7 +99,7 @@ class DoctorController extends Controller
 
     public function EditPatientPassSubmit(Request $request)
     {
-        $id=1;
+        $id=Auth::guard('doctor')->user()->id;
         $dbVar=doctor::find($id);
         $hashedPassword=$dbVar->password;
 
@@ -141,7 +111,7 @@ class DoctorController extends Controller
         if (Hash::check($request->old_password, $hashedPassword)) {
             $dbVar->password=bcrypt($request['password']);
             $dbVar->save();
-            return redirect()->route('PatientEdit');
+            return redirect()->route('ViewDoc',['id'=>$id]);
         }
 
         //Here just send a flush message for invalid old password

@@ -3,7 +3,7 @@
 {{-- Including  required CSS/JS/Other --}}
 
 @section('title')
-    Patient Register
+    Patient Login
 @endsection
 
 @section('OuterInclude')

@@ -13,6 +13,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\patient;
 use Hash;
+use Auth;
 
 class PatientController extends Controller
 {
@@ -33,39 +34,9 @@ class PatientController extends Controller
 
     }
 
-    public function AddPatient()
-    {
-        return View('Patient.AddPatient');
-    }
-
-    public function AddPatientSubmit(Request $request)
-    {
-        $this->validate( $request,[
-            'fname' => 'required|string|max:20',
-            'lname' => 'required|string|max:20',
-            'email' => 'required|string|email|max:255|unique:patients',
-            'gender' => 'required|string',
-            'phone' => 'required|numeric',
-            'age' => 'required|integer',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        $dbVar=new patient();
-        $dbVar->email=$request['email'];
-        $dbVar->fname=$request['fname'];
-        $dbVar->lname=$request['lname'];
-        $dbVar->gender=$request['gender'];
-        $dbVar->phone=$request['phone'];
-        $dbVar->age=$request['age'];
-        $dbVar->password = bcrypt($request['password']);
-        $dbVar->save();
-
-        return $request->all();
-    }
-
     public function EditPatient()
     {
-        $id = 1;
+        $id = Auth::guard('patient')->user()->id;
         $dbVar=patient::find($id);
         return view('Patient.EditPatient')->with('Personal',$dbVar);
     }
@@ -80,7 +51,7 @@ class PatientController extends Controller
             'age' => 'required|integer',
         ]);
 
-        $id=1;
+        $id=Auth::guard('patient')->user()->id;
         $dbVar=patient::find($id);
         $dbVar->fname=$request['fname'];
         $dbVar->lname=$request['lname'];
@@ -90,9 +61,7 @@ class PatientController extends Controller
 
         $dbVar->save();
 
-        return redirect()->route('PatientEdit');
-
-        return $request->all();
+        return redirect()->route('ViewPatient',['id'=>$id]);
     }
 
     public function EditPatientPicSubmit(Request $request)
@@ -102,7 +71,7 @@ class PatientController extends Controller
         ]);
 
         $file = $request->file('fileToUpload');
-        $id=1;
+        $id=Auth::guard('patient')->user()->id;;
         $dbVar=patient::find($id);
         $destinationPath="profilePicture";
         $fileName=$id.'P.'.$file->getClientOriginalExtension();
@@ -110,7 +79,7 @@ class PatientController extends Controller
         if($uploadSuccess){
             $dbVar->img=$destinationPath.'/'.$fileName;
             $dbVar->save();
-            return redirect()->route('PatientEdit');
+            return redirect()->route('ViewPatient',['id'=>$id]);
         }
         //Here just send a flush message for for someting wrong for storing picture
         $request->session()->flash('wrong', 'Something Went Wrong. Please Try Latter');
@@ -120,7 +89,7 @@ class PatientController extends Controller
 
     public function EditPatientPassSubmit(Request $request)
     {
-        $id=1;
+        $id=Auth::guard('patient')->user()->id;
         $dbVar=patient::find($id);
         $hashedPassword=$dbVar->password;
 
@@ -132,7 +101,7 @@ class PatientController extends Controller
         if (Hash::check($request->old_password, $hashedPassword)) {
             $dbVar->password=bcrypt($request['password']);
             $dbVar->save();
-            return redirect()->route('PatientEdit');
+            return redirect()->route('ViewPatient',['id'=>$id]);
         }
 
         //Here just send a flush message for invalid old password
