@@ -40,9 +40,11 @@ class DoctorLoginController extends Controller
             return redirect('/');
         }
 
-        $request->session()->flash('email', 'These credentials do not match our records.');
+        $errors = ['email' => trans('auth.failed')];
 
-        return redirect()->back();
+        return redirect()->back()
+            ->withInput($request->only('email', 'remember'))
+            ->withErrors($errors);
     }
 
     public function AddDoc()

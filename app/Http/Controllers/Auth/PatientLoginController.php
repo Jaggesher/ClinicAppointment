@@ -36,10 +36,11 @@ class PatientLoginController extends Controller
             return redirect('/');
         }
 
-        $request->session()->flash('email', 'These credentials do not match our records.');
+        $errors = ['email' => trans('auth.failed')];
 
-        return 'Ase nai';
-        //return redirect()->back();
+        return redirect()->back()
+            ->withInput($request->only('email', 'remember'))
+            ->withErrors($errors);
     }
 
     public function AddPatient()
