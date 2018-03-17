@@ -78,7 +78,7 @@ class DoctorLoginController extends Controller
         $dbVar->save();
 
 
-        Auth::gurd()->logout();
+        Auth::guard()->logout();
         if(Auth::guard('doctor')->attempt(['email' => $request->email,'password' => $request->password])){
             return redirect('/');
         }
