@@ -63,54 +63,92 @@
     <br>
     <br>
 
-    {{--@if(Auth::guard('admin')->check())--}}
-        {{--<div class="container">--}}
-            {{--<div class="col-sm-12 add_doc_head clearfix">--}}
-                {{--<h2 class="pull-left">Activity</h2>--}}
-                {{--<h2 class="pull-right"><button id="addDateBtn" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button></h2>--}}
-            {{--</div>--}}
+    @if(Auth::guard('doctor')->check() && Auth::guard('doctor')->user()->id == $Personal->id)
+        <div class="container">
+            <div class="col-sm-12 add_doc_head clearfix">
+                <h2 class="pull-left">Activity</h2>
+                <h2 class="pull-right"><button id="addDateBtn" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button></h2>
+            </div>
 
-            {{--<div class="col-md-8 col-sm-offset-2" id="addDateBlock" @if(count($errors) == 0 && !Session::has('Already_added')) style = "display:none;" @endif>--}}
-                {{--<div class="panel panel-default">--}}
-                    {{--<div class="panel-heading">Add Another Date.</div>--}}
-                    {{--<div class="panel-body">--}}
-                        {{--<p class="alert alert-danger"> <strong>Hey Admin!!!!</strong> <br> &nbsp &nbsp Be serious about the date. Once you add it then it never undo. So you must be over sure about the date.<br>&nbsp&nbsp&nbsp ----Thank You. :) </p>--}}
-                        {{--<form class="form-horizontal" method="POST" action="{{ route('Doc.Add.Date') }}">--}}
-                            {{--<input type="hidden" name="_token" value="{{csrf_token()}}">--}}
-                            {{--<input type="hidden" name="doctor" value="{{$Personal->id}}">--}}
+            <div class="col-md-8 col-sm-offset-2" id="addDateBlock" @if(count($errors) == 0 && !Session::has('Already_added')) style = "display:none;" @endif>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Add Another Date.</div>
+                    <div class="panel-body">
+                        <p class="alert alert-danger"> <strong>Alert!!!!</strong> <br> &nbsp &nbsp Be serious about the date. Once you add it then it never undo. So you must be over sure about the date.<br>&nbsp&nbsp&nbsp ----Thank You. :) </p>
+                        <form class="form-horizontal" method="POST">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <input type="hidden" name="doctor" value="{{$Personal->id}}">
 
-                            {{--<div class="form-group{{ $errors->has('serial_date') || Session::has('Already_added') ? ' has-error' : '' }}">--}}
-                                {{--<label for="serial_date" class="col-md-4 control-label">Enter Date</label>--}}
+                            <div class="form-group{{ $errors->has('serial_date') || Session::has('Already_added') ? ' has-error' : '' }}">
 
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input id="serial_date" type="date" class="form-control" name="serial_date" value="{{ old('serial_date') }}" required autofocus>--}}
+                                <label for="serial_date" class="col-md-4 control-label">Enter Date</label>
+                                <div class="col-md-6">
+                                    <input id="serial_date" type="date" class="form-control" name="serial_date" value="{{ old('serial_date') }}" required>
 
-                                    {{--@if ($errors->has('serial_date'))--}}
-                                        {{--<span class="help-block">--}}
-                                            {{--<strong>{{ $errors->first('serial_date') }}</strong>--}}
-                                        {{--</span>--}}
-                                    {{--@endif--}}
+                                    @if ($errors->has('serial_date'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('serial_date') }}</strong>
+                                        </span>
+                                    @endif
 
-                                    {{--@if (Session::has('Already_added'))--}}
-                                        {{--<span class="help-block">--}}
-                                             {{--<strong> {{ Session::get('Already_added') }}</strong>--}}
-                                        {{--</span>--}}
-                                    {{--@endif--}}
+                                    @if (Session::has('Already_added'))
+                                        <span class="help-block">
+                                             <strong> {{ Session::get('Already_added') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
 
-                                {{--</div>--}}
-                            {{--</div>--}}
+                            <div class="form-group {{ $errors->has('start_time') ? ' has-error' : '' }}">
+                                <label for="start_time" class="col-md-4 control-label">Start Time: </label>
+                                <div class="col-md-6">
+                                    <input id="start_time" type="time" class="form-control" name="start_time" value="{{ old('start_time') }}" required>
 
-                            {{--<div class="form-group">--}}
-                                {{--<div class="col-md-8 col-md-offset-4">--}}
-                                    {{--<button type="submit" class="btn btn-primary">--}}
-                                        {{--Add Date--}}
-                                    {{--</button>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</form>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+                                    @if ($errors->has('start_time'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('start_time') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group {{ $errors->has('minute_for_each') ? ' has-error' : '' }}">
+                                <label for="minute_for_each" class="col-md-4 control-label">Minnute For Each: </label>
+                                <div class="col-md-6">
+                                    <input id="start_time" type="number" min="20" max="60" class="form-control" name="minute_for_each" value="{{ old('minute_for_each') }}" required>
+
+                                    @if ($errors->has('minute_for_each'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('minute_for_each') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group {{ $errors->has('num_of_patients') ? ' has-error' : '' }}">
+                                <label for="num_of_patients" class="col-md-4 control-label">Number OF Patients: </label>
+                                <div class="col-md-6">
+                                    <input id="num_of_patients" type="number" min="1" max="100" class="form-control" name="num_of_patients" value="{{ old('num_of_patients') }}" required>
+
+                                    @if ($errors->has('num_of_patients'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('num_of_patients') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Add Date
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
 
             {{--<div class="col-sm-12 contest_table">--}}
@@ -140,7 +178,7 @@
                 {{--</br>--}}
                 {{--</br>--}}
             {{--</div>--}}
-        {{--</div>--}}
-    {{--@endif--}}
+        </div>
+    @endif
 
 @endsection
