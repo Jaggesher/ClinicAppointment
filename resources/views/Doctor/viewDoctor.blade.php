@@ -75,7 +75,7 @@
                     <div class="panel-heading">Add Another Date.</div>
                     <div class="panel-body">
                         <p class="alert alert-danger"> <strong>Alert!!!!</strong> <br> &nbsp &nbsp Be serious about the date. Once you add it then it never undo. So you must be over sure about the date.<br>&nbsp&nbsp&nbsp ----Thank You. :) </p>
-                        <form class="form-horizontal" method="POST">
+                        <form class="form-horizontal" method="POST" action="{{ route('AddDate.Submit') }}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <input type="hidden" name="doctor" value="{{$Personal->id}}">
 
@@ -111,11 +111,24 @@
                                     @endif
                                 </div>
                             </div>
+                            
+                            <div class="form-group {{ $errors->has('end_time') ? ' has-error' : '' }}">
+                                <label for="end_time" class="col-md-4 control-label">End Time: </label>
+                                <div class="col-md-6">
+                                    <input id="end_time" type="time" class="form-control" name="end_time" value="{{ old('end_time') }}" required>
+
+                                    @if ($errors->has('end_time'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('end_time') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="form-group {{ $errors->has('minute_for_each') ? ' has-error' : '' }}">
                                 <label for="minute_for_each" class="col-md-4 control-label">Minnute For Each: </label>
                                 <div class="col-md-6">
-                                    <input id="start_time" type="number" min="20" max="60" class="form-control" name="minute_for_each" value="{{ old('minute_for_each') }}" required>
+                                    <input id="minute_for_each" type="number" min="20" max="60" class="form-control" name="minute_for_each" value="{{ old('minute_for_each') }}" required>
 
                                     @if ($errors->has('minute_for_each'))
                                         <span class="help-block">
@@ -125,14 +138,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('num_of_patients') ? ' has-error' : '' }}">
-                                <label for="num_of_patients" class="col-md-4 control-label">Number OF Patients: </label>
+                            <div class="form-group {{ $errors->has('chember') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Chember:</label>
                                 <div class="col-md-6">
-                                    <input id="num_of_patients" type="number" min="1" max="100" class="form-control" name="num_of_patients" value="{{ old('num_of_patients') }}" required>
-
-                                    @if ($errors->has('num_of_patients'))
+                                    <textarea class="form-control" rows="8" placeholder="chember address." name="chember" required>{{ old('chember')}}</textarea>
+                                    @if ($errors->has('chember'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('num_of_patients') }}</strong>
+                                            <strong>{{ $errors->first('chember') }}</strong>
                                         </span>
                                     @endif
                                 </div>

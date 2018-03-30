@@ -18,7 +18,7 @@
 			}
 		);
 		
-		$("#start_time").flatpickr(
+		$("#start_time,#end_time").flatpickr(
 			{
 				enableTime: true,
 				noCalendar: true,

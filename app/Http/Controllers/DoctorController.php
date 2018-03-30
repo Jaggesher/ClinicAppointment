@@ -120,4 +120,10 @@ class DoctorController extends Controller
         return redirect()->back();
     }
 
+
+    public function AddDateSubmit(Request $request)
+    {
+        return $request->all();
+    }
+
 }
