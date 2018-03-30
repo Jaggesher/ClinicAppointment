@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use App\category;
 use App\district;
 use App\doctor;
+use App\date;
+use App\serial;
 use Hash;
 use Auth;
 
@@ -123,7 +125,82 @@ class DoctorController extends Controller
 
     public function AddDateSubmit(Request $request)
     {
+        $this->validate($request,[
+            'serial_date' => 'required|date',
+            'minute_for_each' => 'required|numeric|max:60',
+            'start_time' => 'required|string',
+            'end_time' => 'required|string',
+            'chember' => 'required|string',
+        ]);
+        
+        if($request->start_time >= $request->end_time)
+        {
+            $request->session()->flash('Already_added', 'Check Start And End Date.');
+            return redirect()->back();
+
+        }
+        
+        $st_time = $request->start_time;
+        $end_time = $request->end_time;
+
+        
+
+        $time1 = strtotime($request->start_time);
+        $time2 = strtotime($request->end_time);
+        $time3 = $request->minute_for_each*60;
+        $diff = round(abs($time2 - $time1) / 60,2);
+        
+        $dbVar = date::where('serial_date','=',$request->serial_date)->get();
+        
+
+        if(empty($dbVar)){
+            $request->session()->flash('Already_added', 'Check Start And End time & Also Date.');
+            return redirect()->back();
+        }
+
+        foreach($dbVar as $var)
+        {
+            $tmStart= strtotime($var->start_time);
+            $tmEnd= strtotime($var->end_time);
+
+            if(($time1 <= $tmStart  && $time2>= $tmStart ) || ($time1 <= $tmEnd  && $time2>= $tmEnd ))
+            {
+                $request->session()->flash('Already_added', 'Check Start And End time & Also Date.');
+                return redirect()->back();
+            }
+        }
+
+        
+
+        if($diff < $request->minute_for_each)
+        {
+            $request->session()->flash('Already_added', 'Check Start And Ennd time interval.');
+            return redirect()->back();
+        }
+        
+        $dbVar = new date;
+ 
+        $dbVar->serial_date = $request->serial_date;
+        $dbVar->start_time = $request->start_time;
+        $dbVar->end_time = $request->end_time;
+        $dbVar->doctor = Auth::guard('doctor')->user()->id;
+        $dbVar->chember = $request->chember;
+
+        $dbVar->save();
+
+        while(($time1+$time3) <= $time2)
+        {
+            $dbVar1 = new serial;
+            $dbVar1->start_time = date("H:i",$time1);
+            $dbVar1->end_time = date("H:i",$time1+$time3);
+            $dbVar1->serial_date = $dbVar->id;
+            $dbVar1->save();
+
+            $time1+=$time3;
+        }
+        
         return $request->all();
+
     }
 
 }

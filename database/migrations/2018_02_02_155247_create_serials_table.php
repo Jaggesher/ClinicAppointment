@@ -17,7 +17,7 @@ class CreateSerialsTable extends Migration
             $table->increments('id');
             $table->time('start_time')->nullable(false);
             $table->time('end_time')->nullable(false);
-            $table->unsignedInteger('patient')->default(0);
+            $table->unsignedInteger('patient')->nullable(true);
             $table->unsignedInteger('serial_date')->nullable(false);
             $table->timestamps();
             $table->foreign('serial_date')->references('id')->on('dates');
