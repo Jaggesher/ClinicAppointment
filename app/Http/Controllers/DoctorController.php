@@ -198,8 +198,10 @@ class DoctorController extends Controller
 
             $time1+=$time3;
         }
+
+        $id = Auth::guard('doctor')->user()->id;
         
-        return $request->all();
+        return redirect()->route('ViewDoc',['id'=>$id]);
 
     }
 
