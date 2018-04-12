@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="#">Doctors</a></li>
+                <li><a href="{{route('Doctors')}}">Doctors</a></li>
                 @if(Auth::guard('web')->check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span>

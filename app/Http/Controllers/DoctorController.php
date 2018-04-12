@@ -32,7 +32,8 @@ class DoctorController extends Controller
         $dbVar = doctor::find($id);
         if($dbVar != null)
         {
-            return view('Doctor.viewDoctor')->with('Personal',$dbVar);
+            $dbVar1 = date::where('doctor',$id)->get();
+            return view('Doctor.viewDoctor')->with('Personal',$dbVar)->with('Dates',$dbVar1);
         }
         return redirect('error');
     }
