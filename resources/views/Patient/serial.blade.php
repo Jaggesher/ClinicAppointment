@@ -74,6 +74,7 @@
                     </tbody>
                 </table>
                 @if($i>1)
+                    <h4 class="alert alert-info">Payment method gos here</h4>
                     <input type="submit" value="submit" class="btn btn-primary">
                 @endif
             </form>

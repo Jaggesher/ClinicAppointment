@@ -31,7 +31,8 @@ class PatientController extends Controller
     {
         $dbVar = patient::find($id);
         if ($dbVar != null) {
-            return View('Patient.ViewPatient')->with('Personal', $dbVar);
+            $dbVar1 = serial::where('patient',$id)->with('date')->get();
+            return View('Patient.ViewPatient')->with('Personal', $dbVar)->with('info',$dbVar1);
         }
         return redirect('error');
 
