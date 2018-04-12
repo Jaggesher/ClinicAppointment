@@ -196,7 +196,7 @@
                             <td>{{$date->end_time}}</td>
                             <td>{{$date->chember}}</td>
                             <td>
-                                <button class="btn, btn-primary">addSerial</button>
+                                <a  href="{{route('bookSerial', ['id' => $date->id])}}" class="btn btn-success">Book Serial</a>
                             </td>
                         </tr>
                     @endforeach

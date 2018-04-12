@@ -37,6 +37,8 @@ Route::get('EditPatient','PatientController@EditPatient')->name('PatientEdit');
 Route::post('EditPatient','PatientController@EditPatientSubmit')->name('PatientEdit.Submit');
 Route::post('EditPatientPic','PatientController@EditPatientPicSubmit')->name('PatientEditPic.Submit');
 Route::post('EditPatientPass','PatientController@EditPatientPassSubmit')->name('PatientEditPass.Submit');
+Route::get('bookSerial/{id}','PatientController@bookSerial')->name('bookSerial');
+Route::post('bookSerial','PatientController@bookedSerial')->name('bookSerial.submit');
 
 Route::get('AdminAdd','AdminController@AdminAdd')->name('AdminAdd');
 Route::post('NewCategory','AdminController@NewCategory')->name('NewCategory.Submit');
