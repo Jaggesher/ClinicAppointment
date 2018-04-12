@@ -55,6 +55,7 @@
                         <td>Mobile:</td>
                         <td>{{$Personal->phone}}</td>
                     </tr>
+                    <tr></tr>
                     </tbody>
                 </table>
             </div>
