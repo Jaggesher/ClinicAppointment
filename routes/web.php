@@ -12,6 +12,8 @@
 */
 
 Route::get('error','CommonController@Error')->name('error');
+Route::get('/doctors','CommonController@ShowDoctors')->name('Doctors');
+Route::post('/doctors','CommonController@Doctors');
 
 Route::get('DocLogin','Auth\DoctorLoginController@Login')->name('DocLogin');
 Route::post('DocLogin','Auth\DoctorLoginController@LoginSubmit')->name('DocLogin.Submit');
@@ -39,6 +41,10 @@ Route::post('EditPatientPass','PatientController@EditPatientPassSubmit')->name('
 Route::get('AdminAdd','AdminController@AdminAdd')->name('AdminAdd');
 Route::post('NewCategory','AdminController@NewCategory')->name('NewCategory.Submit');
 Route::post('NewDistrict','AdminController@NewDistrict')->name('NewDistrict.Submit');
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
