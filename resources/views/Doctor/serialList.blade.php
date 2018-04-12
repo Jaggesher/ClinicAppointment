@@ -62,7 +62,7 @@
                             <td>{{$serial->start_time}}</td>
                             <td>{{$serial->end_time}}</td>
                             @if($serial->patient != null)
-                                <td><a href="{{route('serial.lsit', ['id' => $serial->patient])}}">Related Patient</a>
+                                <td><a href="{{route('ViewPatient', ['id' => $serial->patient])}}">Related Patient</a>
                                 </td>
                             @else
                                 <td>N/A</td>
