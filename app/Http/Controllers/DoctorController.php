@@ -206,4 +206,13 @@ class DoctorController extends Controller
 
     }
 
+    public function GetList($id)
+    {
+        $dbVar = date::find($id);
+        $dbVar2 = doctor::find($dbVar->doctor);
+        $dbVar1 = serial::where('serial_date', $id)->get();
+        //return $dbVar;
+        return view('Doctor/serialList')->with('Date', $dbVar)->with('Doctor', $dbVar2)->with('Serials', $dbVar1);
+    }
+
 }

@@ -197,6 +197,7 @@
                             <td>{{$date->chember}}</td>
                             <td>
                                 <a  href="{{route('bookSerial', ['id' => $date->id])}}" class="btn btn-success">Book Serial</a>
+                                <a  href="{{route('serial.lsit', ['id' => $date->id])}}" class="btn btn-success">See List</a>
                             </td>
                         </tr>
                     @endforeach

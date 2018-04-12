@@ -26,6 +26,7 @@ Route::post('EditDoc','DoctorController@EditDocSubmit')->name('DocEdit.Submit');
 Route::post('EditDocPic','DoctorController@EditDocPicSubmit')->name('DocEditPic.Submit');
 Route::post('EditDocPass','DoctorController@EditPatientPassSubmit')->name('DocEditPass.Submit');
 Route::post('AddDate','DoctorController@AddDateSubmit')->name('AddDate.Submit');
+Route::get('list/{id}','DoctorController@GetList')->name('serial.lsit');
 
 Route::get('PatientLogin','Auth\PatientLoginController@Login')->name('PatientLogin');
 Route::post('PatientLogin','Auth\PatientLoginController@LoginSubmit')->name('PatientLogin.Submit');
