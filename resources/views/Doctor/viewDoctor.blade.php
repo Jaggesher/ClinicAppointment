@@ -199,7 +199,7 @@
                                 <a href="{{route('bookSerial', ['id' => $date->id])}}" class="btn btn-success">Book
                                     Serial</a>
                                 @if(Auth::guard('doctor')->check() && Auth::guard('doctor')->user()->id == $Personal->id )
-                                    <a href="{{route('serial.lsit', ['id' => $date->id])}}" class="btn btn-success">See
+                                    <a href="{{route('serial.lsit', ['id' => $date->id])}}" class="btn btn-primary">See
                                         List</a>
                                 @endif
                             </td>

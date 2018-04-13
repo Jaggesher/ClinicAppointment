@@ -14,7 +14,7 @@
 @section('ContentOfBody')
     <div class="container">
         <div class=" col-sm-12 add_doc_head clearfix">
-            <h2 class="pull-left">Book Your Serial</h2>
+            <h2 class="pull-left">Serial List View</h2>
         </div>
 
         <div class="col-sm-8 col-sm-offset-2">
@@ -37,7 +37,7 @@
         </div>
 
         <div class=" col-sm-12 add_doc_head clearfix">
-            <h4 class="pull-left">Choose from Below</h4>
+            <h4 class="pull-left">Related Serials.</h4>
         </div>
 
         <div class="col-sm-12 well">
