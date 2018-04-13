@@ -196,8 +196,12 @@
                             <td>{{$date->end_time}}</td>
                             <td>{{$date->chember}}</td>
                             <td>
-                                <a  href="{{route('bookSerial', ['id' => $date->id])}}" class="btn btn-success">Book Serial</a>
-                                <a  href="{{route('serial.lsit', ['id' => $date->id])}}" class="btn btn-success">See List</a>
+                                <a href="{{route('bookSerial', ['id' => $date->id])}}" class="btn btn-success">Book
+                                    Serial</a>
+                                @if(Auth::guard('doctor')->check() && Auth::guard('doctor')->user()->id == $Personal->id )
+                                    <a href="{{route('serial.lsit', ['id' => $date->id])}}" class="btn btn-success">See
+                                        List</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
