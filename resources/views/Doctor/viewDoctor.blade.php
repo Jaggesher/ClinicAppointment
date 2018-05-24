@@ -218,7 +218,7 @@
                 @endif
                 </tbody>
             </table>
-
+            <hr>
             <div id='calendar'></div>
         </div>
     </div>
