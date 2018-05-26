@@ -31,13 +31,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
 
-<script src="{{ asset('js/main.js') }}"></script>
+
 
 
 <link href="{{ asset('fullcalendar-3.9.0/fullcalendar.min.css') }}" rel='stylesheet' />
 <link href="{{ asset('fullcalendar-3.9.0/fullcalendar.print.min.css') }}" rel='stylesheet' media='print' />
 <script src="{{ asset('fullcalendar-3.9.0/lib/moment.min.js') }}"></script>
-<script src="{{ asset('fullcalendar-3.9.0/lib/jquery.min.js') }}"></script>
+{{--<script src="{{ asset('fullcalendar-3.9.0/lib/jquery.min.js') }}"></script>--}}
 <script src="{{ asset('fullcalendar-3.9.0/fullcalendar.min.js') }}"></script>
 
 
