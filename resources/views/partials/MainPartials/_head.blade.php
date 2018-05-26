@@ -5,14 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+<link rel="icon" href="{{ asset('doccare.png') }}">
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 
-
-
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
