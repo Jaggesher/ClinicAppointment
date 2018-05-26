@@ -44,7 +44,7 @@ Route::post('bookSerial','PatientController@bookedSerial')->name('bookSerial.sub
 Route::get('AdminAdd','AdminController@AdminAdd')->name('AdminAdd');
 Route::post('NewCategory','AdminController@NewCategory')->name('NewCategory.Submit');
 Route::post('NewDistrict','AdminController@NewDistrict')->name('NewDistrict.Submit');
-
+Route::post('DeleteDoctor','AdminController@DeleteDoctor')->name('DeleteDoctor');
 
 
 

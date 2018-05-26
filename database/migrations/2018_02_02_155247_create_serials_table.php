@@ -20,8 +20,8 @@ class CreateSerialsTable extends Migration
             $table->unsignedInteger('patient')->nullable(true);
             $table->unsignedInteger('serial_date')->nullable(false);
             $table->timestamps();
-            $table->foreign('serial_date')->references('id')->on('dates');
-            $table->foreign('patient')->references('id')->on('patients');
+            $table->foreign('serial_date')->references('id')->on('dates')->onDelete('cascade');
+            $table->foreign('patient')->references('id')->on('patients')->onDelete('cascade');
         });
     }
 

@@ -25,8 +25,8 @@ class CreateDoctorsTable extends Migration
             $table->string('img', 50)->nullable(false)->default("image/doctor.jpg");
             $table->timestamps();
             $table->rememberToken();
-            $table->foreign('category')->references('category')->on('categories');
-            $table->foreign('district')->references('district')->on('districts');
+            $table->foreign('category')->references('category')->on('categories')->onDelete('cascade');
+            $table->foreign('district')->references('district')->on('districts')->onDelete('cascade');
         });
     }
 

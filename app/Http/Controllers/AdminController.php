@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\district;
 use App\category;
+use App\doctor;
 
 class AdminController extends Controller
 {
@@ -50,6 +51,14 @@ class AdminController extends Controller
         $dbVar->save();
 
         return redirect(route('AdminAdd'));
+
+    }
+
+    public function DeleteDoctor(Request $request)
+    {
+        $flight = doctor::find($request->DoctorId);
+        $flight->delete();
+        return redirect(route('Doctors'));
 
     }
 }

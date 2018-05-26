@@ -22,7 +22,7 @@ class CreateDatesTable extends Migration
             $table->unsignedInteger('doctor')->nullable(false);
             $table->timestamps();
             $table->text('chember')->nullable(false);
-            $table->foreign('doctor')->references('id')->on('doctors');
+            $table->foreign('doctor')->references('id')->on('doctors')->onDelete('cascade');
         });
     }
 

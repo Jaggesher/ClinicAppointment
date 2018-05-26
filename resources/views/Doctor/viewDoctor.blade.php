@@ -28,6 +28,11 @@
             <div class="col-sm-3" align="center">
                 <img src="{{ asset($Personal->img) }}" class="img-thumbnail" alt="Profile Pic" width="200" height="200">
                 <p class="cls_sort_msg"> {{$Personal->sort_msg}}</p>
+                <form method="post" action="{{ route('DeleteDoctor') }}">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" name="DoctorId" value="{{$Personal->id}}">
+                    <input type="submit" class="btn btn-danger" value="Delete This Doctor">
+                </form>
             </div>
             <div class="col-sm-9">
                 <div class="pro-info">
