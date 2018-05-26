@@ -11,7 +11,7 @@
         position: relative;
         right: 0;
         top: 0;
-        min-height: 80vh;
+        min-height: 100vh;
       }
       footer{
           text-align: center;
