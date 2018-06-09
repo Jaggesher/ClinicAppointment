@@ -38,7 +38,14 @@
                     <tr>
                         <td>{{$i}}</td>
                         <td>{{$category->Category}}</td>
-                        <td><button class="btn btn-default">Delete</button></td>
+                        <td>
+                            <form action="{{ route('DeleteCategory') }}" method="post">
+                                {{ csrf_field() }}
+                                <input name="id" value="{{$category->Category}}" type="hidden" >
+                                <button class="btn btn-default">Delete</button>
+                            </form>
+
+                        </td>
                     </tr>
                     @php
                         $i+=1;

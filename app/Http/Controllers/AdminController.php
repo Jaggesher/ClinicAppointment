@@ -54,6 +54,21 @@ class AdminController extends Controller
 
     }
 
+    public function DeleteCategory(Request $request)
+    {
+        if($request->id != null)
+        {
+            $id= $request->id;
+            $dbvar= category::find($id);
+            if($dbvar != null) {
+                $dbvar->delete();
+                return redirect(route('AdminAdd'));
+            }
+
+        }
+        return redirect(route('error'));
+    }
+
     public function DeleteDoctor(Request $request)
     {
         $flight = doctor::find($request->DoctorId);
