@@ -46,6 +46,7 @@ Route::post('NewCategory','AdminController@NewCategory')->name('NewCategory.Subm
 Route::post('NewDistrict','AdminController@NewDistrict')->name('NewDistrict.Submit');
 Route::post('DeleteDoctor','AdminController@DeleteDoctor')->name('DeleteDoctor');
 Route::post('DeleteCategory','AdminController@DeleteCategory')->name('DeleteCategory');
+Route::post('DeleteDistrict','AdminController@DeleteDistrict')->name('DeleteDistrict');
 
 
 

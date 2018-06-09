@@ -109,7 +109,13 @@
                     <tr>
                         <td>{{$i}}</td>
                         <td>{{$district->district}}</td>
-                        <td><button class="btn btn-default">Delete</button></td>
+                        <td>
+                            <form action="{{ route('DeleteDistrict') }}" method="post">
+                                {{ csrf_field() }}
+                                <input name="id" value="{{$district->district}}" type="hidden" >
+                                <button class="btn btn-default">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @php
                         $i+=1;

@@ -64,7 +64,20 @@ class AdminController extends Controller
                 $dbvar->delete();
                 return redirect(route('AdminAdd'));
             }
+        }
+        return redirect(route('error'));
+    }
 
+    public function DeleteDistrict(Request $request)
+    {
+        if($request->id != null)
+        {
+            $id= $request->id;
+            $dbvar= district::find($id);
+            if($dbvar != null) {
+                $dbvar->delete();
+                return redirect(route('AdminAdd'));
+            }
         }
         return redirect(route('error'));
     }
