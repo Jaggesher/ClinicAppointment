@@ -10,7 +10,11 @@
     <link href="{{ asset('css/doctors.css') }}" rel="stylesheet">
     {{-- <script src="{{ asset('js/doctors.js') }}"></script> --}}
 @endsection
-
+<style>
+    body{
+        background: url("picture/111.jpg") fixed center;
+    }
+</style>
 
 @section('ContentOfBody')
     <div class="container">

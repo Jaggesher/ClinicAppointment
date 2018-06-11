@@ -10,7 +10,11 @@
     <link href="{{ asset('css/AdminAdd.css') }}" rel="stylesheet">
     {{-- <script src="{{ asset('js/view_patient.js') }}"></script> --}}
 @endsection
-
+<style>
+    body{
+        background: url("picture/1.jpg") fixed center;
+    }
+</style>
 
 @section('ContentOfBody')
     {{-- Main Profile View --}}

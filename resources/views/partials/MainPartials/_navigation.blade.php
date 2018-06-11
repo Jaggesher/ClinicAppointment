@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
     <div class="container">
         <div class="navbar-header">
 
@@ -11,16 +11,16 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">DocAppointment</a>
+            <a style="color:white" class="navbar-brand" href="{{ url('/') }}">DocAppointment</a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="{{route('Doctors')}}">Doctors</a></li>
+                <li><a style="color:white" style="hover:color:red" href="{{route('Doctors')}}">Doctors</a></li>
                 @if(Auth::guard('web')->check())
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span>
+                        <a style="color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
@@ -35,7 +35,7 @@
                 <!-- Authentication Links -->
                 @if(Auth::guard('doctor')->check())
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a style="color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::guard('doctor')->user()->name }} <span class="caret"></span>
                         </a>
 
@@ -56,7 +56,7 @@
                     </li>
                 @elseif(Auth::guard('patient')->check())
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a style="color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::guard('patient')->user()->fname }} <span class="caret"></span>
                         </a>
 
@@ -77,7 +77,7 @@
                     </li>
                 @elseif(Auth::guard('web')->check())
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a style="color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::guard()->user()->name }} <span class="caret"></span>
                         </a>
 
@@ -97,7 +97,7 @@
                     </li>
                 @elseif (Auth::guest())
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up
+                        <a style="color:white" class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{Route('PatientAdd')}}">Patient Register</a></li>
@@ -106,7 +106,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login
+                        <a style="color:white" class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('PatientLogin')}}">PatientLogin</a></li>

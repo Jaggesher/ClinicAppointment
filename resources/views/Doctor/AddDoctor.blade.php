@@ -9,14 +9,19 @@
 @section('OuterInclude')
 
 @endsection
-
+<style>
+    body{
+        background: url("picture/111.jpg") fixed center;
+    }
+</style>
 
 @section('ContentOfBody')
     <div class="container">
         <div class="row">
+            <br>
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Doctor Register</div>
+                    <div class="panel-heading"><h4 style="text-align:center">Doctor Register</h4></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="post" action="{{route('DocAdd.Submit')}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
