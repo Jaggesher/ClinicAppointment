@@ -10,9 +10,9 @@
 
 @endsection
 <style>
-    body{
-        background: url("picture/27.jpg") fixed center;
-    }
+body{
+    background: url("picture/27.jpg") fixed center;
+}
 </style>
 
 @section('ContentOfBody')
