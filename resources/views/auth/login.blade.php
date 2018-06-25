@@ -9,11 +9,6 @@
 @section('OuterInclude')
 
 @endsection
-<style>
-body{
-    background: url("picture/27.jpg") fixed center;
-}
-</style>
 
 @section('ContentOfBody')
 <div class="container">

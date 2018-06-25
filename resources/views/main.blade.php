@@ -21,6 +21,17 @@
         right: 0;
         top: 5em;
         /* min-height: 100vh; */
+
+        
+    }
+
+    .navbar-nav li a:hover {
+          color: #1abc9c !important;
+          background: transparent !important;
+      }
+
+    body{
+      background: url("picture/111.jpg") fixed center;
     }
     </style>
   </head>
