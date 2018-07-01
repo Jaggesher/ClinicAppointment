@@ -151,7 +151,7 @@ class DoctorController extends Controller
         $time3 = $request->minute_for_each*60;
         $diff = round(abs($time2 - $time1) / 60,2);
         
-        $dbVar = date::where('serial_date','=',$request->serial_date)->get();
+        $dbVar = date::where('serial_date','=',$request->serial_date)->where('doctor','=',$request->doctor)->get();
         
 
         if(empty($dbVar)){
